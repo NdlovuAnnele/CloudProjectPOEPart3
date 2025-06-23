@@ -1,0 +1,58 @@
+﻿@model Events
+
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<div class="card">
+				<div class="card-header bg-primary text-bg-danger-white">
+					<h2>Delete Events</h2>
+				</div>
+				<div class=" card-body">
+					<form asp-action="Delete" method="post">
+						<input type="hidden" asp-for="EventID" />
+
+						<div asp-validation-summary="All" class="text-danger">
+						</div>
+
+						<div class="form-group mb-3">
+							<label asp-for="EventName" class="form-label">Event Name</label>
+							<input asp-for="EventName" class="form-control" placeholder="Enter a Event Name" ReadOnly />
+							<span asp-validation-for="EventName" class="text-danger"></span>
+						</div>
+						<div class="form-group mb-3">
+							<label asp-for="EventDate" class="form-label">Event Date</label>
+							<input asp-for="EventDate" class="form-control" type="date" ReadOnly />
+							<span asp-validation-for="EventDate" class="text-danger"></span>
+						</div>
+						<div class="form-group mb-3">
+							<label asp-for="Description" class="form-label">Description</label>
+							<input asp-for="Description" class="form-control" placeholder="Enter Description" ReadOnly />
+							<span asp-validation-for="Description" class="text-danger"></span>
+						</div>
+						<div class="form-group mb-3">
+							<label asp-for="VenueID" class="form-label">VenueID</label>
+							<select asp-for="VenueID" class="form-control" asp-items="ViewBag.VenueList" ReadOnly>
+								<option value="">-- Select Venue --</option>
+
+							</select>
+							<span asp-validation-for="VenueID" class="text-danger"></span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<button type="submit" class="btn btn-danger">Delete</button>
+							<a asp-controller="Event" asp-action="Index" class="btn btn-secondary mt-3">
+								← Back to Events
+							</a>
+
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

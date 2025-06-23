@@ -1,0 +1,75 @@
+﻿@model List<Venues>
+
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger">@TempData["Error"]</div>
+	<div class="alert alert-danger">This is an error</div>
+}
+
+@if (TempData["Success"] != null)
+{
+	<div class="alert alert-success">@TempData["Success"]</div>
+	<div class="alert alert-success">This is a success</div>
+}
+<div class="container">
+	<div class="row pt-4">
+		<div class="col-6">
+			<a class="btn btn-primary" asp-controller="Venue" asp-action="Create">
+				Create new Venue
+			</a>
+			
+		</div>
+		<div class="col-6 text-end">
+			<h2>Venue</h2>
+		</div>
+	</div>
+</div>
+
+<div class="table responsive">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+
+				<th scope="col">Venue Name</th>
+				
+				<th scope="col">Location</th>
+
+				<th scope="col">Capacity</th>
+				<th scope="col">ImageURL</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var entry in Model)
+			{
+				<tr>
+					<td>@entry.VenueName</td>
+					<td>@entry.Locations</td>
+					<td>@entry.Capacity</td>
+					<td>@entry.ImageURL</td>
+					<td>
+
+						<a class="btn btn-primary" asp-controller="Venue" asp-action="Edit" asp-route-id="@entry.VenueID">
+							Edit
+						</a>
+						<a class="btn btn-danger" asp-controller="Venue" asp-action="Delete" asp-route-id="@entry.VenueID">
+							Delete
+						</a>
+					</td>
+
+				</tr>
+			}
+		</tbody>
+
+	</table>
+
+
+
+
+
+
+
+
+
+
+</div>

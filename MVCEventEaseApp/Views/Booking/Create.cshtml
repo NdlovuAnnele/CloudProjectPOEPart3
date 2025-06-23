@@ -1,0 +1,58 @@
+﻿@model Bookings
+@if (ViewBag.VenueList == null || ViewBag.EventList == null)
+{
+	<div class="alert alert-danger">
+		One or more dropdown lists are not initialized. Please check controller logic.
+	</div>
+}
+<div class="container mt-4">
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<div class="card">
+				<div class="card-header bg-primary text-bg-danger-white">
+					<h2>Create Booking</h2>
+				</div>
+				<div class=" card-body">
+
+					<form asp-action="Create" method="post">
+						
+						<div asp-validation-summary="All" class="alert alert-danger">
+						</div>
+						<div class="form-group mb-3">
+							<label asp-for="VenueID" class="form-label">Venue</label>
+							<select asp-for="VenueID" asp-items="ViewBag.VenueList" class="form-control">
+								<option value="">-- Select Venue --</option>
+							</select>
+							<span asp-validation-for="VenueID" class="text-danger"></span>
+						</div>
+
+						<div class="form-group mb-3">
+							<label asp-for="EventID" class="form-label">Event</label>
+							<select asp-for="EventID" asp-items="ViewBag.EventList" class="form-control">
+								<option value="">-- Select Event --</option>
+							</select>
+							<span asp-validation-for="EventID" class="text-danger"></span>
+						</div>
+						<div class="form-group mb-3">
+							<label asp-for="BookingDate" class="form-label">Booking Date</label>
+							<input asp-for="BookingDate" row="4" class="form-control" type="date" />
+							<span asp-validation-for="BookingDate" class="text-danger"></span>
+						</div>
+						<div class="d-flex justify-content-between">
+							<button type="submit" class="btn btn-primary">Create</button>
+							<a asp-controller="Booking" asp-action="Index" class="btn btn-secondary mt-3">
+								← Back to Bookings
+							</a>
+
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

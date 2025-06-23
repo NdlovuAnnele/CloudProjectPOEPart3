@@ -1,0 +1,61 @@
+﻿@model List<Events>
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+	<div class="alert alert-success">@TempData["Success"]</div>
+}
+<div class="container">
+	<div class="row pt-4">
+		<div class="col-6">
+			<a class="btn btn-primary" asp-controller="Event" asp-action="Create">
+				Create new Event
+			</a>
+
+		</div>
+		<div class="col-6 text-end">
+			<h2>Event</h2>
+		</div>
+	</div>
+</div>
+
+<div class="table responsive">
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+
+				<th scope="col">Event Name</th>
+				
+				<th scope="col">Event date</th>
+
+				<th scope="col">Description</th>
+				<th scope="col">VenueID</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var entry in Model)
+			{
+				<tr>
+					<td>@entry.EventName</td>
+					<td>@entry.EventDate</td>
+					<td>@entry.Description</td>
+					<td>@entry.Venue?.VenueName</td>
+					
+					<td>
+
+						<a class="btn btn-primary" asp-controller="Event" asp-action="Edit" asp-route-id="@entry.EventID">
+							Edit
+						</a>
+						<a class="btn btn-danger" asp-controller="Event" asp-action="Delete" asp-route-id="@entry.EventID">
+							Delete
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+
+	</table>
+</div>
